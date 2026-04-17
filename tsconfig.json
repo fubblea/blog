@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "noEmit": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": [
+    "blog/**/*.ts",
+    "blog/**/*.vue",
+    "blog/**/*.d.ts",
+    "blog/.vitepress/**/*.ts",
+    "blog/.vitepress/**/*.vue",
+    "blog/.vitepress/**/*.d.ts"
+  ]
+}

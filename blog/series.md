@@ -1,0 +1,5 @@
+---
+title: Content Series
+---
+
+<SeriesGrid />
