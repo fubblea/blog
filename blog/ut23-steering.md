@@ -1,7 +1,7 @@
 ---
 tags: [cad, dfm, fea, mechatronics]
 tech: [matlab, solidworks]
-date-written: 13-08-2019
+date-written: 13-08-2022
 ---
 
 # UT23 Steering System
