@@ -49,6 +49,13 @@ const getSeriesTitle = (seriesId: string | undefined) => {
         </div>
       </a>
     </div>
+    
+    <div class="view-all-container">
+      <a href="/all-posts" class="view-all-btn">
+        <span>View All Posts</span>
+        <Icon icon="lucide:arrow-right" />
+      </a>
+    </div>
   </div>
 </template>
 
@@ -72,6 +79,7 @@ const getSeriesTitle = (seriesId: string | undefined) => {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  margin-bottom: 3rem;
 }
 
 .post-card-full {
@@ -173,6 +181,42 @@ const getSeriesTitle = (seriesId: string | undefined) => {
 .post-card-full:hover .post-arrow-btn {
   opacity: 1;
   transform: translateX(5px);
+}
+
+.view-all-container {
+  display: flex;
+  justify-content: center;
+}
+
+.view-all-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 2rem;
+  background: var(--vp-button-brand-bg);
+  color: var(--vp-button-brand-text);
+  border: 1px solid var(--vp-button-brand-border);
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: var(--vp-shadow-2);
+}
+
+.view-all-btn:hover {
+  background: var(--vp-button-brand-hover-bg);
+  color: var(--vp-button-brand-hover-text);
+  border-color: var(--vp-button-brand-hover-border);
+  transform: translateY(-2px);
+  box-shadow: var(--vp-shadow-3);
+}
+
+.view-all-btn .icon {
+  transition: transform 0.3s ease;
+}
+
+.view-all-btn:hover .icon {
+  transform: translateX(4px);
 }
 
 @media (max-width: 768px) {
