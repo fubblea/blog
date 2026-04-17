@@ -5,7 +5,7 @@ export default defineConfig({
   base: '/blog/',
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: 'blog/favicon.png' }],
-    ['link', { rel: 'icon', type: 'image/x-icon', href: 'blog/favicon.ico' }]
+    ['link', { rel: 'icon', type: 'image/x-icon', href: 'blog/favicon.png' }]
   ],
   title: "Ajay B. Anand",
   description: "Ajay's Blog",
