@@ -6,7 +6,7 @@ hero:
   name: "Ajay B. Anand"
   tagline: Welcome to Ajay's Portfolio/Blog
   image:
-    src: ./cover_photo.jpg
+    src: /cover_photo.jpg
   actions:
     - theme: brand
       text: All Posts
