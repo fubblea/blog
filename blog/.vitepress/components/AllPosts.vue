@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { ref, computed, onMounted } from 'vue'
 import { data as postsData } from '../theme/posts.data'
 import { data as seriesData } from '../theme/series.data'
@@ -132,12 +132,12 @@ onMounted(() => {
     <div class="results-section">
       <div v-for="series in filteredSeries" :key="series.title" class="series-block">
         <h2 class="series-title">
-          <a v-if="!series.isStandalone" :href="series.url">{{ series.title }}</a>
+          <a v-if="!series.isStandalone" :href="withBase(series.url)">{{ series.title }}</a>
           <span v-else>{{ series.title }}</span>
         </h2>
         <div class="posts-list">
           <div v-for="post in series.posts" :key="post.url" class="post-item-indented">
-            <a :href="post.url" class="post-row">
+            <a :href="withBase(post.url)" class="post-row">
               <div class="post-info-col">
                 <span class="post-name">{{ post.title }}</span>
                 <div class="post-sub-meta">

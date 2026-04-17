@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { withBase } from 'vitepress'
 import { data as postsData } from '../theme/posts.data'
 import { data as seriesData } from '../theme/series.data'
 import { formatDate, getTechIcon } from '../theme/utils'
@@ -24,7 +25,7 @@ const getSeriesTitle = (seriesId: string | undefined) => {
   <div class="latest-posts">
     <h2 class="section-title">Latest Posts</h2>
     <div class="posts-list">
-      <a v-for="post in latestPosts" :key="post.url" :href="post.url" class="post-card-full">
+      <a v-for="post in latestPosts" :key="post.url" :href="withBase(post.url)" class="post-card-full">
         <div class="card-left">
           <div class="post-meta-top">
             <span v-if="post.seriesId" class="series-tag">{{ getSeriesTitle(post.seriesId) }}</span>
@@ -51,7 +52,7 @@ const getSeriesTitle = (seriesId: string | undefined) => {
     </div>
     
     <div class="view-all-container">
-      <a href="/all-posts" class="view-all-btn">
+      <a :href="withBase('/all-posts')" class="view-all-btn">
         <span>View All Posts</span>
         <Icon icon="lucide:arrow-right" />
       </a>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { withBase } from 'vitepress'
 import { data as seriesData } from '../theme/series.data'
 import { data as postsData } from '../theme/posts.data'
 
@@ -19,7 +20,7 @@ const seriesWithCounts = computed(() => {
   <div class="series-section">
     <h2 class="section-title">Series</h2>
     <div class="series-grid">
-      <a v-for="series in seriesWithCounts" :key="series.url" :href="series.url" class="series-card">
+      <a v-for="series in seriesWithCounts" :key="series.url" :href="withBase(series.url)" class="series-card">
         <h3 class="series-card-title">{{ series.title }}</h3>
         <p v-if="series.description" class="series-card-desc">{{ series.description }}</p>
         <span class="series-post-count">{{ series.postCount }} Posts</span>

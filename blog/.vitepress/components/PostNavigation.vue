@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { computed } from 'vue'
 import { data as postsData } from '../theme/posts.data'
 import { data as seriesData } from '../theme/series.data'
@@ -58,22 +58,22 @@ const navigation = computed(() => {
 <template>
   <div v-if="navigation" class="post-navigation">
     <div class="nav-links">
-      <a v-if="navigation.prev" :href="navigation.prev.url" class="nav-card prev">
+      <a v-if="navigation.prev" :href="withBase(navigation.prev.url)" class="nav-card prev">
         <span class="nav-label">{{ navigation.prev.label }}</span>
         <span class="nav-title">← {{ navigation.prev.title }}</span>
       </a>
       <div v-else class="nav-spacer"></div>
 
-      <a v-if="navigation.next" :href="navigation.next.url" class="nav-card next">
+      <a v-if="navigation.next" :href="withBase(navigation.next.url)" class="nav-card next">
         <span class="nav-label">{{ navigation.next.label }}</span>
         <span class="nav-title">{{ navigation.next.title }} →</span>
       </a>
-      <a v-else-if="navigation.nextSeries" :href="navigation.nextSeries.url" class="nav-card next-series">
+      <a v-else-if="navigation.nextSeries" :href="withBase(navigation.nextSeries.url)" class="nav-card next-series">
         <span class="nav-label">No more posts in this series.</span>
         <span class="nav-sublabel">Start reading new series:</span>
         <span class="nav-title">{{ navigation.nextSeries.title }} →</span>
       </a>
-      <a v-else href="/series" class="nav-card next-series">
+      <a v-else :href="withBase('/series')" class="nav-card next-series">
         <span class="nav-label">No more posts in this series.</span>
         <span class="nav-title">Explore other series →</span>
       </a>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { computed } from 'vue'
 import { data as postsData } from '../theme/posts.data'
 import { getTechIcon, type PageFrontmatter } from '../theme/utils'
@@ -39,7 +39,7 @@ const seriesInfo = computed(() => {
 
     <div class="posts-list-container">
       <div class="posts-grid">
-        <a v-for="post in seriesInfo.posts" :key="post.url" :href="post.url" class="post-card">
+        <a v-for="post in seriesInfo.posts" :key="post.url" :href="withBase(post.url)" class="post-card">
           <div class="post-card-header">
             <span class="post-number">{{ post.order.toString().padStart(2, '0') }}</span>
             <h3 class="post-title">{{ post.title }}</h3>
