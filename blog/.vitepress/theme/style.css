@@ -139,8 +139,14 @@
 
 /* Reduce extra top spacing */
 .VPHomeHero {
-  padding-top: 300px !important;
+  padding-top: 100px !important;
   padding-bottom: 40px;
+}
+
+@media (min-width: 640px) {
+  .VPHomeHero {
+    padding-top: 300px !important;
+  }
 }
 
 /* Vertically center content */
