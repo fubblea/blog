@@ -13,12 +13,19 @@ export default defineConfig({
     config: (md) => {
       // Custom ruler to find [@key] or [@key1, @key2]
       md.inline.ruler.after('emphasis', 'cite', (state, silent) => {
-        const regex = /^\[@([^\]]+)\]/
+        const regex = /^\[@((ref|fig):[^\]]+)\]/
         const match = state.src.slice(state.pos).match(regex)
         if (!match) return false
         if (!silent) {
           const token = state.push('html_inline', '', 0)
-          token.content = `<Cite id="${match[1]}"></Cite>`
+          const fullId = match[1]
+          if (fullId.startsWith('fig:')) {
+            const label = fullId.slice(4) // remove 'fig:'
+            token.content = `<FigRef id="${label}"></FigRef>`
+          } else if (fullId.startsWith('ref:')) {
+            const label = fullId.slice(4) // remove 'ref:'
+            token.content = `<Cite id="${label}"></Cite>`
+          }
           state.pos += match[0].length
         }
         return true

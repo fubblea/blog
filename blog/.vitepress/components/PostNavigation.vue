@@ -11,45 +11,49 @@ const navigation = computed(() => {
   const currentPath = normalizePath('/' + page.value.relativePath)
   const parts = page.value.relativePath.split('/')
   
-  // Only show navigation for posts (which are inside a series folder)
-  if (parts.length < 2 || page.value.relativePath.endsWith('index.md')) {
+  // Skip index pages (Series indexes or main indexes)
+  if (page.value.relativePath.endsWith('index.md')) {
     return null
   }
 
-  const seriesFolder = parts[0]
-  const allPostsInSeries = postsData[seriesFolder] || []
-  const currentIndex = allPostsInSeries.findIndex(p => normalizePath(p.url) === currentPath)
+  const isSeries = parts.length >= 2
+  const seriesId = isSeries ? parts[0] : '_standalone'
+  const allPostsInGroup = postsData[seriesId] || []
+  const currentIndex = allPostsInGroup.findIndex(p => normalizePath(p.url) === currentPath)
 
   if (currentIndex === -1) return null
 
-  const prevPost = currentIndex > 0 ? allPostsInSeries[currentIndex - 1] : null
-  const nextPost = currentIndex < allPostsInSeries.length - 1 ? allPostsInSeries[currentIndex + 1] : null
+  const prevPost = currentIndex > 0 ? allPostsInGroup[currentIndex - 1] : null
+  const nextPost = currentIndex < allPostsInGroup.length - 1 ? allPostsInGroup[currentIndex + 1] : null
 
-  // Find next series if no next post exists
+  // Find next series if no next post exists in current series
   let nextSeries = null
-  if (!nextPost) {
-    const currentSeriesIndex = seriesData.findIndex(s => s.url === `/${seriesFolder}/`)
+  if (!nextPost && isSeries) {
+    const currentSeriesIndex = seriesData.findIndex(s => s.url === `/${seriesId}/`)
     if (currentSeriesIndex !== -1 && currentSeriesIndex < seriesData.length - 1) {
       nextSeries = seriesData[currentSeriesIndex + 1]
     }
   }
 
+  const groupLabel = isSeries ? 'Series' : 'Collection'
+
   return {
+    isSeries,
     prev: prevPost ? {
       title: prevPost.title,
       url: prevPost.url,
-      label: `Go to Previous Post in Series - Post ${currentIndex}/${allPostsInSeries.length}`
+      label: `Previous Post in ${groupLabel} - Post ${currentIndex}/${allPostsInGroup.length}`
     } : null,
     next: nextPost ? {
       title: nextPost.title,
       url: nextPost.url,
-      label: `Go to Next Post in Series - Post ${currentIndex + 2}/${allPostsInSeries.length}`
+      label: `Next Post in ${groupLabel} - Post ${currentIndex + 2}/${allPostsInGroup.length}`
     } : null,
     nextSeries: nextSeries ? {
       title: nextSeries.title,
       url: nextSeries.url
     } : null,
-    total: allPostsInSeries.length,
+    total: allPostsInGroup.length,
     current: currentIndex + 1
   }
 })
@@ -74,7 +78,7 @@ const navigation = computed(() => {
         <span class="nav-title">{{ navigation.nextSeries.title }} →</span>
       </a>
       <a v-else :href="withBase('/series')" class="nav-card next-series">
-        <span class="nav-label">No more posts in this series.</span>
+        <span class="nav-label">{{ navigation.isSeries ? 'No more posts in this series.' : 'End of collection.' }}</span>
         <span class="nav-title">Explore other series →</span>
       </a>
     </div>
