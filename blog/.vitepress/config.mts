@@ -4,8 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   base: '/blog/',
   head: [
-    ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
-    ['link', { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    ['link', { rel: 'icon', href: 'blog/favicon.png' }],
   ],
   title: "Ajay B. Anand",
   description: "Ajay's Blog",
