@@ -1,6 +1,6 @@
 <template>
   <figure :id="label ? 'fig-' + label : undefined" class="custom-figure">
-    <img :src="src" :alt="caption" class="figure-img" />
+    <img :src="withBase(src)" :alt="caption" class="figure-img" />
     <figcaption class="figure-caption">
       <span class="figure-number">Figure {{ number > 0 ? number : '?' }}: </span>
       <span class="caption-text">{{ caption }}</span>
@@ -10,6 +10,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { withBase } from 'vitepress'
 import { useFigures } from '../theme/useFigures'
 
 const props = defineProps<{

@@ -13,7 +13,7 @@ As the Steering Systems Lead of the University of Toronto's Formula Racing team,
 This was the first time the team had looked towards driverless, and it was my responsibility to bring that idea to fruition. This involved not only designing the system but also manufacturing it in the university's machine shop.
 
 <Figure
-    src="./attachments/ut23-steering/Steering Assembly Render.png"
+    src="/attachments/ut23-steering/Steering Assembly Render.png"
     caption="Steering Assembly Render"
 />
 
@@ -24,7 +24,7 @@ In order to create the closed-loop feedback system needed for autonomous control
 The biggest challenge when designing the system was weighing the tight space constraints with the torque requirements of the system. In addition, the entire system had to be back-drivable so that there is minimal resistance to the driver when manually operating the car.
 
 <Figure
-    src="./attachments/ut23-steering/Belt Drive Closeup.png"
+    src="/attachments/ut23-steering/Belt Drive Closeup.png"
     caption="Belt Drive Closeup"
 />
 
@@ -37,7 +37,7 @@ This was achieved by feeding data from OptimumLap, Susprog3D, StarCCM, and tire 
 This allowed me to get a very accurate idea of what forces should be expected on track allowing me to set up accurate FEA load cases to spec the steering system components appropriately.
 
 <Figure
-    src="./attachments/ut23-steering/download.png"
+    src="/attachments/ut23-steering/download.png"
     caption="Steering Force Lapsim"
     label="lapsim-result"
 />
@@ -49,6 +49,6 @@ A large part of optimizing the design was keeping the manufacturing method in mi
 In addition, CAM systems such as water jetting, laser cutting, and 3D printing were used whenever possible to reduce the lead times on parts.
 
 <Figure
-    src="./attachments/ut23-steering/PXL_20220406_210213562_PORTRAIT.jpg"
+    src="/attachments/ut23-steering/PXL_20220406_210213562_PORTRAIT.jpg"
     caption="Heating Tubes Prior to Crimping"
 />
