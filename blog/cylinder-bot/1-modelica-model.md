@@ -8,10 +8,5 @@ date-written: 17-04-2026
 
 <Frontmatter />
 
-In this post, we create an multi-body model using Modelica [@ref:texbook].
-
-## Subtitle
-
-Hello there.
-
-## Something else
+> [!NOTE]
+> Good things to come (this is a placeholder)

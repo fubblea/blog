@@ -5,7 +5,7 @@ import { data as postsData } from '../theme/posts.data'
 import { data as seriesData } from '../theme/series.data'
 import { getTechIcon, formatDate } from '../theme/utils'
 import { Icon } from '@iconify/vue'
-import ModelicaLogo from './ModelicaLogo.vue'
+import TechIcon from './TechIcon.vue'
 
 const selectedTags = ref<string[]>([])
 const selectedTech = ref<string[]>([])
@@ -121,8 +121,9 @@ onMounted(() => {
             :class="['filter-btn', { active: selectedTech.includes(tech) }]"
             @click="toggleTech(tech)"
           >
-            <ModelicaLogo v-if="tech.toLowerCase() === 'modelica'" class="btn-icon" />
-            <Icon v-else-if="getTechIcon(tech)" :icon="getTechIcon(tech)!" class="btn-icon" />
+            <TechIcon :tech="tech" class="btn-icon">
+              <template #fallback><span></span></template>
+            </TechIcon>
             {{ tech }}
           </button>
         </div>
@@ -146,8 +147,9 @@ onMounted(() => {
                   </div>
                   <div v-if="post.tech.length" class="inline-tech">
                     <template v-for="t in post.tech" :key="t">
-                      <ModelicaLogo v-if="t.toLowerCase() === 'modelica'" class="mini-tech" />
-                      <Icon v-else-if="getTechIcon(t)" :icon="getTechIcon(t)!" class="mini-tech" />
+                      <TechIcon :tech="t" class="mini-tech">
+                        <template #fallback><span></span></template>
+                      </TechIcon>
                     </template>
                   </div>
                 </div>

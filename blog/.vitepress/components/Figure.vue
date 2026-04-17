@@ -21,7 +21,8 @@ const props = defineProps<{
 const { register } = useFigures()
 
 // Registers the figure in document order and retrieves its sequential number
-const number = computed(() => register(props.label || null))
+// Using src as fallback ID ensures idempotency if label is missing
+const number = computed(() => register(props.label || props.src))
 </script>
 
 <style scoped>

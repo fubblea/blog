@@ -12,7 +12,8 @@ export function provideFigures() {
   const figures = ref<string[]>([])
   
   // Reset figures when page changes (navigation) or content is hot-reloaded (HMR)
-  watch(page, () => {
+  watch(() => page.value.relativePath, (newPath) => {
+    console.log(`[Figures] Page change detected to ${newPath}, resetting figures.`)
     figures.value = []
   }, { immediate: true })
   
@@ -28,22 +29,33 @@ export function useFigures() {
   
   if (!figures) {
     console.error('[Figures] Critical: FIGURES_SYMBOL not found in inject!')
+  } else {
+    // console.log('[Figures] useFigures() called, state found.')
   }
 
   const register = (id: string | null) => {
     if (!figures) return -1
     
     if (id && figures.value.includes(id)) {
-      return figures.value.indexOf(id) + 1
+      const index = figures.value.indexOf(id) + 1
+      // console.log(`[Figures] Using existing ${id}, index: ${index}`)
+      return index
     }
 
-    const actualId = id || `__unlabeled_${figures.value.length}`
-    if (figures.value.includes(actualId)) {
-      return figures.value.indexOf(actualId) + 1
+    if (!id) {
+      // If no ID is provided, we can't easily make it idempotent without more info
+      // But we can at least log it
+      const fallbackId = `__unlabeled_${figures.value.length}`
+      figures.value.push(fallbackId)
+      const index = figures.value.length
+      console.log(`[Figures] Registered NEW unlabeled figure, index: ${index}`)
+      return index
     }
     
-    figures.value.push(actualId)
-    return figures.value.length
+    figures.value.push(id)
+    const index = figures.value.length
+    console.log(`[Figures] Registered NEW ${id}, index: ${index}`)
+    return index
   }
 
   const getNumber = (id: string) => {
