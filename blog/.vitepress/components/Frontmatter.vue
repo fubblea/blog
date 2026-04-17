@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { computed } from 'vue'
 import { data as seriesData } from '../theme/series.data'
 import { data as postsData } from '../theme/posts.data'
@@ -44,16 +44,16 @@ const lastUpdated = computed(() => formatDate(frontmatter.value['last-updated'])
     <div class="header-content">
       <div v-if="seriesInfo && seriesInfo.current > 0" class="series-badge">
         Part {{ seriesInfo.current }}/{{ seriesInfo.total }} of 
-        <a :href="seriesInfo.url" class="series-link">{{ seriesInfo.title }}</a>
+        <a :href="withBase(seriesInfo.url)" class="series-link">{{ seriesInfo.title }}</a>
       </div>
       
       <div class="header-meta">
         <div v-if="tags.length" class="tag-list">
-          <a v-for="tag in tags" :key="tag" :href="'/all-posts?tag=' + encodeURIComponent(tag)" class="tag-item">#{{ tag }}</a>
+          <a v-for="tag in tags" :key="tag" :href="withBase('/all-posts?tag=' + encodeURIComponent(tag))" class="tag-item">#{{ tag }}</a>
         </div>
 
         <div v-if="tech.length" class="tech-row">
-          <a v-for="t in tech" :key="t" :href="'/all-posts?tech=' + encodeURIComponent(t)" class="tech-logo" :title="t">
+          <a v-for="t in tech" :key="t" :href="withBase('/all-posts?tech=' + encodeURIComponent(t))" class="tech-logo" :title="t">
             <ModelicaLogo v-if="t.toLowerCase() === 'modelica'" />
             <Icon v-else-if="getTechIcon(t)" :icon="getTechIcon(t)!" />
             <span v-else class="tech-fallback">{{ t }}</span>
