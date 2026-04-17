@@ -5,7 +5,7 @@ import { data as postsData } from '../theme/posts.data'
 import { data as seriesData } from '../theme/series.data'
 import { formatDate, getTechIcon } from '../theme/utils'
 import { Icon } from '@iconify/vue'
-import ModelicaLogo from './ModelicaLogo.vue'
+import TechIcon from './TechIcon.vue'
 
 const latestPosts = computed(() => {
   return Object.values(postsData)
@@ -40,8 +40,9 @@ const getSeriesTitle = (seriesId: string | undefined) => {
         <div class="card-right">
           <div v-if="post.tech.length" class="tech-stack-row">
             <div v-for="t in post.tech" :key="t" class="tech-icon-circle" :title="t">
-              <ModelicaLogo v-if="t.toLowerCase() === 'modelica'" />
-              <Icon v-else-if="getTechIcon(t)" :icon="getTechIcon(t)!" />
+              <TechIcon :tech="t">
+                <template #fallback><span></span></template>
+              </TechIcon>
             </div>
           </div>
           <div class="post-arrow-btn">

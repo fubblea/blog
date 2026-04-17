@@ -5,7 +5,7 @@ import { data as seriesData } from '../theme/series.data'
 import { data as postsData } from '../theme/posts.data'
 import { getTechIcon, normalizePath, formatDate, type PageFrontmatter } from '../theme/utils'
 import { Icon } from '@iconify/vue'
-import ModelicaLogo from './ModelicaLogo.vue'
+import TechIcon from './TechIcon.vue'
 
 const { page, frontmatter } = useData<PageFrontmatter>()
 
@@ -54,9 +54,7 @@ const lastUpdated = computed(() => formatDate(frontmatter.value['last-updated'])
 
         <div v-if="tech.length" class="tech-row">
           <a v-for="t in tech" :key="t" :href="withBase('/all-posts?tech=' + encodeURIComponent(t))" class="tech-logo" :title="t">
-            <ModelicaLogo v-if="t.toLowerCase() === 'modelica'" />
-            <Icon v-else-if="getTechIcon(t)" :icon="getTechIcon(t)!" />
-            <span v-else class="tech-fallback">{{ t }}</span>
+            <TechIcon :tech="t" />
           </a>
         </div>
 

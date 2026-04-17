@@ -11,9 +11,9 @@ export function provideCitations() {
   const { page } = useData()
   const citations = ref<string[]>([])
   
-  // Reset citations when page changes to ensure per-post bibliography
+  // Reset citations when page changes (navigation) or content is hot-reloaded (HMR)
   watch(() => page.value.relativePath, (newPath) => {
-    console.log(`[Citations] Page changed to ${newPath}, resetting citations.`)
+    console.log(`[Citations] Page change detected to ${newPath}, resetting citations.`)
     citations.value = []
   }, { immediate: true })
   
