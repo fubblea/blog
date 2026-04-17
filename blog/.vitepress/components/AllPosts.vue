@@ -269,6 +269,14 @@ onMounted(() => {
   transition: background 0.2s ease;
 }
 
+@media (max-width: 640px) {
+  .post-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
 .post-row:hover {
   background: var(--vp-c-bg-soft);
 }
@@ -289,11 +297,13 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .inline-tags {
   display: flex;
   gap: 0.6rem;
+  flex-wrap: wrap;
 }
 
 .mini-tag {
